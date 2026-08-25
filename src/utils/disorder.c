@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-double	computer_disorder(t_stack *stack)
+double	compute_disorder(t_stack *stack)
 {
 	t_stack *i;
 	t_stack *j;

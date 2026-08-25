@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	free_Stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
 
@@ -33,9 +33,9 @@ void	free_split(char **args)
 void print_error(t_stack **a, t_stack **b)
 {
 	if (a)
-		free_Stack(a);
+		free_stack(a);
 	if (b)
-		free_Stack(b);
+		free_stack(b);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 
