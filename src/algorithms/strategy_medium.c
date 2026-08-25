@@ -13,7 +13,8 @@ static int  ft_sqrt(int n)
 
 }
 
-static void push_chunks_to_b(t_stack **a, t_stack **b, int chunk_size)
+static void push_chunks_to_b(t_stack **a, t_stack **b, int chunk_size,
+		t_config *config)
 {
     int     i;
 
@@ -22,21 +23,21 @@ static void push_chunks_to_b(t_stack **a, t_stack **b, int chunk_size)
     {
         if ((*a)->index <= i)
         {
-            pb(a, b);
-            rb(b);
+            pb(a, b, config);
+            rb(b, config);
             i++;
         }
         else if ((*a)->index <= i + chunk_size)
         {
-            pb(a, b);
+            pb(a, b, config);
             i++;
         }
         else
-            ra(a);
+            ra(a, config);
     }
 }
 
-void    strategy_medium(t_stack **a, t_stack **b)
+void    strategy_medium(t_stack **a, t_stack **b, t_config *config)
 {
     int     chunk_size;
     int     max_idx;
@@ -44,17 +45,17 @@ void    strategy_medium(t_stack **a, t_stack **b)
     chunk_size = ft_sqrt(stack_size(*a));
     if (chunk_size < 1)
         chunk_size = 1;
-    push_chunks_to_b(a, b, chunk_size);
+    push_chunks_to_b(a, b, chunk_size, config);
     while (*b)
     {
         max_idx = stack_size(*b) - 1;
         while ((*b)->index != max_idx)
         {
             if (get_min_pos(*b, max_idx) <= stack_size(*b) / 2)
-                rb(b);
+                rb(b, config);
             else
-                rrb(b);
+                rrb(b, config);
         }
-        pa(a, b);
+        pa(a, b, config);
     }
 }

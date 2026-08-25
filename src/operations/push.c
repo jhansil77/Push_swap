@@ -13,16 +13,18 @@ static void	push(t_stack **src, t_stack **dest)
 
 }
 
-void	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b, t_config *config)
 {
 	push(b, a);
 	write(1, "pa\n", 3);
+	config->total_ops++;
 
 }
 
-void	pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b, t_config *config)
 {
 	push(a, b);
 	write(1, "pb\n", 3);
+	config->total_ops++;
 
 }

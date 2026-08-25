@@ -20,24 +20,27 @@ static void	reverse_rotate(t_stack **stack)
 
 }
 
-void	rra(t_stack **a)
+void	rra(t_stack **a, t_config *config)
 {
 	reverse_rotate(a);
 	write(1, "rra\n", 4);
+	config->total_ops++;
 
 }
 
-void	rrb(t_stack **b)
+void	rrb(t_stack **b, t_config *config)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 4);
+	config->total_ops++;
 
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b, t_config *config)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
 	write (1, "rrr\n", 4);
+	config->total_ops++;
 
 }

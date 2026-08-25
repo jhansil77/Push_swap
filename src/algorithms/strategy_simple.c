@@ -25,7 +25,7 @@ static int  find_min_pos(t_stack *a)
 
 }
 
-int    strategy_simple(t_stack **a, t_stack **b)
+void    strategy_simple(t_stack **a, t_stack **b, t_config *config)
 {
     int     pos;
     int    size;
@@ -37,17 +37,17 @@ int    strategy_simple(t_stack **a, t_stack **b)
         if (pos <= size / 2)
         {
             while (pos-- > 0)
-                ra(a);
+                ra(a, config);
         }
         else
         {
             while (pos++ < size)
-                rra(a);
+                rra(a, config);
         }
-        pb(a, b);
+        pb(a, b, config);
     }
     if (!is_sorted(*a))
-        sort_three(a);
+        sort_three(a, config);
     while (*b)
-        pa(a, b);
+        pa(a, b, config);
 }

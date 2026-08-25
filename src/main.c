@@ -7,17 +7,19 @@ static void	init_config(t_config *config)
 	config->flag_complex = 0;
 	config->flag_adaptive = 0;
 	config->flag_bench = 0;
+	config->total_ops = 0;
 }
 
-static int	execute_strategy(t_stack **a, t_stack **b, t_config *config)
+static void	execute_strategy(t_stack **a, t_stack **b, t_config *config)
 {
 	if (config->flag_simple)
-		return (strategy_simple(a, b));
+		strategy_simple(a, b, config);
 	else if (config->flag_medium)
-		return (strategy_medium(a, b));
+		strategy_medium(a, b, config);
 	else if (config->flag_complex)
-		return (strategy_complex(a, b));
-	return (strategy_adaptive(a, b));
+		strategy_complex(a, b, config);
+	else
+		strategy_adaptive(a, b, config);
 }
 
 int	main(int argc, char **argv)
@@ -26,11 +28,9 @@ int	main(int argc, char **argv)
 	t_stack		*b;
 	t_config	config;
 	double		disorder;
-	int			ops;
 
 	a = NULL;
 	b = NULL;
-	ops = 0;
 	init_config(&config);
 	if (argc < 2)
 		return (0);
@@ -39,8 +39,8 @@ int	main(int argc, char **argv)
 		return (0);
 	index_stack(a);
 	disorder = compute_disorder(a);
-	ops = execute_strategy(&a, &b, &config);
-	print_benchmark(&config, disorder, ops);
+	execute_strategy(&a, &b, &config);
+	print_benchmark(&config, disorder);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
