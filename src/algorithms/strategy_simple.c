@@ -25,7 +25,7 @@ static int  find_min_pos(t_stack *a)
 
 }
 
-void    strategy_simple(t_stack **a, t_stack **b)
+int    strategy_simple(t_stack **a, t_stack **b)
 {
     int     pos;
     int    size;

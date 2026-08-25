@@ -75,5 +75,6 @@ void	strategy_simple(t_stack **a, t_stack **b);
 void	strategy_medium(t_stack **a, t_stack **b);
 void	strategy_complex(t_stack **a, t_stack **b);
 void	strategy_adaptive(t_stack **a, t_stack **b);
+void    print_benchmark(t_config *config, double disorder, int total_ops);
 
 #endif

@@ -20,7 +20,8 @@ SRCS        = src/main.c \
               src/algorithms/strategy_simple.c \
               src/algorithms/strategy_medium.c \
               src/algorithms/strategy_complex.c \
-              src/algorithms/strategy_adaptive.c
+              src/algorithms/strategy_adaptive.c \
+              src/utils/bench.c
 
 OBJS        = $(SRCS:.c=.o)
 
