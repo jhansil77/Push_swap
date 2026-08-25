@@ -1,4 +1,4 @@
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 void	sort_three(t_stack **a)
 {
@@ -16,21 +16,21 @@ void	sort_three(t_stack **a)
 	else if (top > mid && mid > bot)
 	{
 		sa(*a);
-		rra(*a);
+		rra(a);
 	}
 	else if (top > mid && mid < bot && top > bot)
 		ra(a);
 	else if (top < mid && mid > bot && top < bot)
 	{
 		sa(*a);
-		ra(*a);
+		ra(a);
 	}
 	else if (top < mid && mid > bot && top > bot)
-		rra(*a);
+		rra(a);
 
 }
 
-static int	get_min_pos(t_stack *a, int target_index)
+int	get_min_pos(t_stack *a, int target_index)
 {
 	int	pos;
 	pos = 0;
@@ -79,7 +79,7 @@ void	sort_small(t_stack **a, t_stack **b)
 	}
 	if (size == 4)
 		push_min_to_b(a, b, 0);
-	else if
+	else if (size == 5)
 	{
 		push_min_to_b(a, b, 0);
 		push_min_to_b(a, b, 1);

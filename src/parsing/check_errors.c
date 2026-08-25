@@ -1,5 +1,4 @@
-#include "../../include/push_swap.h"
-
+#include "push_swap.h"
 
 int	is_number(char *str)
 {
@@ -14,7 +13,7 @@ int	is_number(char *str)
 		return (0);
 	while (str[i])
 	{
-		if (str[i] < '0' !! str[i] > '9')
+		if ((str[i] < '0') || (str[i] > '9'))
 			return (0);
 		i++;
 	}

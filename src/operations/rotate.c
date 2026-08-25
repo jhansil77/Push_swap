@@ -1,4 +1,4 @@
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 static void	rotate(t_stack **stack)
 {
@@ -29,7 +29,7 @@ void	rb(t_stack **b)
 
 }
 
-void	rr(stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b)
 {
 	rotate(a);
 	rotate(b);

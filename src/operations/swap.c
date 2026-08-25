@@ -1,4 +1,4 @@
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 static void	swap(t_stack *stack)
 {
@@ -10,9 +10,9 @@ static void	swap(t_stack *stack)
 	tmp_val = stack->value;
 	tmp_idx = stack->index;
 	stack->value = stack->next->value;
-	stack->index = stack->next-index;
-	stack->next-value = tmp_val;
-	stack->next-index = tmp_idx;
+	stack->index = stack->next->index;
+	stack->next->value = tmp_val;
+	stack->next->index = tmp_idx;
 
 }
 
@@ -25,8 +25,8 @@ void	sa(t_stack *a)
 
 void	sb(t_stack *b)
 {
-	swap(b)
-	write(1, "sb\n", 3);
+	swap(b);
+	write (1, "sb\n", 3);
 
 }
 

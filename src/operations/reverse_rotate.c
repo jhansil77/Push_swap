@@ -1,4 +1,4 @@
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 static void	reverse_rotate(t_stack **stack)
 {
@@ -12,7 +12,7 @@ static void	reverse_rotate(t_stack **stack)
 	while (last->next)
 	{
 		prev = last;
-		last = last-next;
+		last = last->next;
 	}
 	prev->next = NULL;
 	last->next = *stack;

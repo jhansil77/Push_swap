@@ -1,6 +1,6 @@
-#include "../../../includes/push_swap.h"
+#include "push_swap.h"
 
-int	parser_flags(char *arg, t_config *config)
+int	parse_flags(char *arg, t_config *config)
 {
 	if (!ft_strcmp(arg, "--simple"))
 		config->flag_simple = 1;
@@ -20,7 +20,7 @@ int	parser_flags(char *arg, t_config *config)
 static void	process_number(char *str, t_stack **a, char **args, int is_split)
 {
 	long	val;
-	t_stack *new_node;
+	t_stack	*new_node;
 
 	if (!is_number(str))
 	{
@@ -40,13 +40,12 @@ static void	process_number(char *str, t_stack **a, char **args, int is_split)
 	{
 		if (is_split)
 			free_split(args);
-			print_error(a, NULL);
+		print_error(a, NULL);
 	}
 	stack_add_back(a, new_node);
-
 }
 
-void	parser_args(char **args, t_stack **a, int is_split)
+void	parse_args(char **args, t_stack **a, int is_split)
 {
 	int	i;
 
@@ -56,16 +55,9 @@ void	parser_args(char **args, t_stack **a, int is_split)
 		process_number(args[i], a, args, is_split);
 		i++;
 	}
-	if (has_duplicates(*a))
-	{
-		if (is_split)
-			free_split(args);
-		print_error(a, NULL);
-	}
-
 }
 
-void	parser_input(int argc, char **argv, t_stack **a, t_config * config)
+void	parse_input(int argc, char **argv, t_stack **a, t_config *config)
 {
 	int		i;
 	char	**split_args;
@@ -73,17 +65,17 @@ void	parser_input(int argc, char **argv, t_stack **a, t_config * config)
 	i = 1;
 	while (i < argc)
 	{
-		if (argv[i][0] == '-' && parser_flags(argv[i], config))
+		if (argv[i][0] == '-' && parse_flags(argv[i], config))
 		{
 			i++;
 			continue ;
 		}
 		if (ft_strchr(argv[i], ' '))
 		{
-			split_args = ft_split(argv[i], ' ')
+			split_args = ft_split(argv[i], ' ');
 			if (!split_args)
 				print_error(a, NULL);
-			parser_args(split_args, a, 1);
+			parse_args(split_args, a, 1);
 			free_split(split_args);
 		}
 		else

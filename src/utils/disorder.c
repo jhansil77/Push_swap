@@ -1,4 +1,4 @@
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 double	computer_disorder(t_stack *stack)
 {
@@ -34,7 +34,7 @@ int	is_sorted(t_stack *stack)
 	{
 		if (stack->value > stack->next->value)
 			return (0);
-		stack = stack->next
+		stack = stack->next;
 	}
 	return (1);
 }

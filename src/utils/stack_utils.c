@@ -1,4 +1,4 @@
-#include "../../includes/push_swap.h"
+#include "push_swap.h"
 
 /*asignar memoria para un nuevo nodo inicializar sus datos*/
 t_stack	*stack_new(int value)
