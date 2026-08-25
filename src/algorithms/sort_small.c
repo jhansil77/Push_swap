@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sort_three(t_stack **a)
+void	sort_three(t_stack **a, t_config *config)
 {
 	int	top;
 	int	mid;
@@ -12,21 +12,21 @@ void	sort_three(t_stack **a)
 	mid = (*a)->next->index;
 	bot = (*a)->next->next->index;
 	if (top > mid && mid < bot && top < bot)
-		sa(*a);
+		sa(*a, config);
 	else if (top > mid && mid > bot)
 	{
-		sa(*a);
-		rra(a);
+		sa(*a, config);
+		rra(a, config);
 	}
 	else if (top > mid && mid < bot && top > bot)
-		ra(a);
+		ra(a, config);
 	else if (top < mid && mid > bot && top < bot)
 	{
-		sa(*a);
-		ra(a);
+		sa(*a, config);
+		ra(a, config);
 	}
 	else if (top < mid && mid > bot && top > bot)
-		rra(a);
+		rra(a, config);
 
 }
 
@@ -45,7 +45,8 @@ int	get_min_pos(t_stack *a, int target_index)
 
 }
 
-static void	push_min_to_b(t_stack **a, t_stack **b, int target_index)
+static void	push_min_to_b(t_stack **a, t_stack **b, int target_index,
+		t_config *config)
 {
 	int	pos;
 	int	size;
@@ -55,18 +56,18 @@ static void	push_min_to_b(t_stack **a, t_stack **b, int target_index)
 	if (pos <= size / 2)
 	{
 		while ((*a)->index != target_index)
-			ra(a);
+			ra(a, config);
 	}
 	else
 	{
 		while ((*a)->index != target_index)
-			rra(a);
+			rra(a, config);
 	}
-	pb(a, b);
+	pb(a, b, config);
 
 }
 
-void	sort_small(t_stack **a, t_stack **b)
+void	sort_small(t_stack **a, t_stack **b, t_config *config)
 {
 	int	size;
 
@@ -74,18 +75,18 @@ void	sort_small(t_stack **a, t_stack **b)
 	if (size == 2)
 	{
 		if ((*a)->index > (*a)->next->index)
-			sa(*a);
+			sa(*a, config);
 		return ;
 	}
 	if (size == 4)
-		push_min_to_b(a, b, 0);
+		push_min_to_b(a, b, 0, config);
 	else if (size == 5)
 	{
-		push_min_to_b(a, b, 0);
-		push_min_to_b(a, b, 1);
+		push_min_to_b(a, b, 0, config);
+		push_min_to_b(a, b, 1, config);
 	}
-	sort_three(a);
+	sort_three(a, config);
 	while (*b)
-		pa(a, b);
+		pa(a, b, config);
 
 }

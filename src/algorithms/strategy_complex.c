@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void    strategy_complex(t_stack **a, t_stack **b)
+void    strategy_complex(t_stack **a, t_stack **b, t_config *config)
 {
     int    size;
     int    max_bits;
@@ -18,13 +18,13 @@ void    strategy_complex(t_stack **a, t_stack **b)
         while (j < size)
         {
             if ((((*a)->index >> i) & 1) == 1)
-                ra(a);
+                ra(a, config);
             else
-                pb(a, b);
+                pb(a, b, config);
             j++;
         }
         while (*b)
-            pa(a, b);
+            pa(a, b, config);
         i++;
     }
 }

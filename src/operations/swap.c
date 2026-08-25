@@ -16,24 +16,27 @@ static void	swap(t_stack *stack)
 
 }
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, t_config *config)
 {
 	swap(a);
 	write(1, "sa\n", 3);
+	config->total_ops++;
 
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, t_config *config)
 {
 	swap(b);
 	write (1, "sb\n", 3);
+	config->total_ops++;
 
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, t_config *config)
 {
 	swap(a);
 	swap(b);
 	write(1, "ss\n", 3);
+	config->total_ops++;
 
 }
