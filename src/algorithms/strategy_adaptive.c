@@ -1,16 +1,16 @@
 #include "push_swap.h"
 
-void   strategy_adaptive(t_stack **a, t_stack **b)
+int   strategy_adaptive(t_stack **a, t_stack **b)
 {
     double disorder;
+
     if (is_sorted(*a))
-        return ;
+        return (0);
     disorder = compute_disorder(*a);
     if (disorder < 0.2)
-        strategy_simple(a, b);
+        return (strategy_simple(a, b));
     else if (disorder < 0.5)
-        strategy_medium(a, b);
+        return (strategy_medium(a, b));
     else
-        strategy_complex(a, b);
-
+        return (strategy_complex(a, b));
 }

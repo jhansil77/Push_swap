@@ -71,10 +71,10 @@ int		is_sorted(t_stack *stack);
 void	sort_three(t_stack **a);
 void	sort_small(t_stack **a, t_stack **b);
 
-void	strategy_simple(t_stack **a, t_stack **b);
-void	strategy_medium(t_stack **a, t_stack **b);
-void	strategy_complex(t_stack **a, t_stack **b);
-void	strategy_adaptive(t_stack **a, t_stack **b);
+int	strategy_simple(t_stack **a, t_stack **b);
+int	strategy_medium(t_stack **a, t_stack **b);
+int	strategy_complex(t_stack **a, t_stack **b);
+int	strategy_adaptive(t_stack **a, t_stack **b);
 void    print_benchmark(t_config *config, double disorder, int total_ops);
 
 #endif

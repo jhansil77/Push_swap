@@ -1,30 +1,57 @@
 #include "push_swap.h"
 
-void    strategy_complex(t_stack **a, t_stack **b)
+static int get_max_bits(t_stack *a)
 {
-    int    size;
+    int max_idx;
+    int max_bits;
+
+    max_idx = stack_size(a) - 1;
+    max_bits = 0;
+    while ((max_idx >> max_bits) > 0)
+        max_bits++;
+    return (max_bits);
+
+}
+static int process_bit_level(t_stack **a, t_stack **b, int bit, int size)
+{
+    int     ops;
+    int     j;
+
+    ops = 0;
+    j = 0;
+    while (j < size)
+    {
+        if ((((*a)->index >> bit) & 1) == 1)
+        {
+            ra(a);
+            ops++;
+        }
+        else
+        {
+            pb(a, b);
+            ops++;
+        }
+        j++;
+    }
+    while (*b && ++ops)
+        pa(a, b);
+    return (ops);
+}
+int    strategy_complex(t_stack **a, t_stack **b)
+{
+    int    bit;
     int    max_bits;
-    int    i;
-    int    j;
+    int    size;
+    int    ops;
 
     size = stack_size(*a);
-    max_bits = 0;
-    while ((size - 1) >> max_bits != 0)
-        max_bits++;
-    i = 0;
-    while (i < max_bits)
+    max_bits = get_max_bits(*a);
+    bit = 0;
+    ops = 0;
+    while (bit < max_bits)
     {
-        j = 0;
-        while (j < size)
-        {
-            if ((((*a)->index >> i) & 1) == 1)
-                ra(a);
-            else
-                pb(a, b);
-            j++;
-        }
-        while (*b)
-            pa(a, b);
-        i++;
+        ops += process_bit_level(a, b, bit, size);
+        bit++;
     }
+    return (ops);
 }

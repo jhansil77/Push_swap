@@ -25,29 +25,41 @@ static int  find_min_pos(t_stack *a)
 
 }
 
-int    strategy_simple(t_stack **a, t_stack **b)
+static int  push_mins_to_b(t_stack **a, t_stack **b)
 {
     int     pos;
-    int    size;
+    int     size;
+    int     ops;
 
+    ops = 0;
     while (stack_size(*a) > 3 && !is_sorted(*a))
     {
         pos = find_min_pos(*a);
         size = stack_size(*a);
         if (pos <= size / 2)
         {
-            while (pos-- > 0)
+            while (pos-- > 0 && ++ops)
                 ra(a);
         }
         else
         {
-            while (pos++ < size)
+            while (pos++ < size && ++ops)
                 rra(a);
         }
         pb(a, b);
+        ops++;
     }
+    return (ops);
+}
+int    strategy_simple(t_stack **a, t_stack **b)
+{
+    int     ops;
+
+    ops = push_mins_to_b(a, b);
     if (!is_sorted(*a))
         sort_three(a);
-    while (*b)
+    while (*b && ++ops)
         pa(a, b);
+    return (ops);
+
 }

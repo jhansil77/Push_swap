@@ -13,7 +13,7 @@ static void	print_strategy(t_config *config)
 		ft_putstr_fd("Adaptive / O(n√n)\n", 2);
 }
 
-void	print_benchmark(t_config *config, double disorder)
+void	print_benchmark(t_config *config, double disorder, int total_ops)
 {
 	if (!config->flag_bench)
 		return ;
@@ -24,7 +24,7 @@ void	print_benchmark(t_config *config, double disorder)
 	ft_putstr_fd("%\n", 2);
 	print_strategy(config);
 	ft_putstr_fd("[bench] total_ops:  ", 2);
-	ft_putnbr_fd(config->total_ops, 2);
+	ft_putnbr_fd(total_ops, 2);
 	ft_putstr_fd("\n", 2);
 }
 
